@@ -10,6 +10,7 @@ module.exports = {
           navigators: './src/navigators',
           screens: './src/screens',
           store: './src/redux',
+          api: './src/API',
         },
         extensions: [
           '.json',
