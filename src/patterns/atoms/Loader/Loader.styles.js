@@ -6,6 +6,6 @@ export default colors =>
       justifyContent: 'center',
       alignItems: 'center',
       opacity: 0.95,
-      backgroundColor: colors.primary['200'],
+      backgroundColor: colors.indigo['300'],
     },
   });

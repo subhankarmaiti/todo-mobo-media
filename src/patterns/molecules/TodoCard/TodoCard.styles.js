@@ -6,7 +6,7 @@ export default colors =>
       padding: 7,
       height: 100,
       overflow: 'hidden',
-      width: '50%',
+      flex: 1,
       backgroundColor: 'white',
     },
     title: {

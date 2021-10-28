@@ -49,7 +49,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header
-        title={page > 1 ? `Todo List ${page}` : 'Todo'}
+        title={page > 1 ? `Todo List ${page}` : 'Todo List'}
         enableNext={isMoreDataPresent(todos, page)}
         onPressNext={onNext}
         enableBack={page > 1}

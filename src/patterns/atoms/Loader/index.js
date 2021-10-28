@@ -11,7 +11,7 @@ const Loader = () => {
   return (
     <Modal transparent>
       <View style={styles.container}>
-        <Spinner color={colors.secondary['900']} size={70} type="ThreeBounce" />
+        <Spinner color={colors.indigo['900']} size={70} type="ThreeBounce" />
       </View>
     </Modal>
   );
