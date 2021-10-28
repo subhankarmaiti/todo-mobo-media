@@ -5,7 +5,7 @@ export default colors =>
       ...StyleSheet.absoluteFill,
       justifyContent: 'center',
       alignItems: 'center',
-      opacity: 0.95,
+      opacity: 0.7,
       backgroundColor: colors.indigo['300'],
     },
   });
