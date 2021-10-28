@@ -1,5 +1,6 @@
 import {
   ADD_TODO,
+  DELETE_TODO,
   END_LOADER,
   END_UPDATE_LOADER,
   LOAD_TODOS,
@@ -7,7 +8,11 @@ import {
   START_UPDATE_LOADER,
   UPDATE_PAGE,
 } from './TodoAction.types';
-import { createTodo as createTodoAPI, getTodos as getTodosAPI } from 'api';
+import {
+  createTodo as createTodoAPI,
+  deleteTodo as deleteTodoAPI,
+  getTodos as getTodosAPI,
+} from 'api';
 
 const startLoader = () => ({ type: START_LOADER });
 
@@ -60,6 +65,18 @@ export const createTodo =
       .then(createdTodo => {
         createdTodo.id = Object.keys(list).length + 1;
         dispatch({ type: ADD_TODO, todo: createdTodo });
+        onSuccess();
+      })
+      .finally(() => dispatch(endUpdate()));
+  };
+
+export const deleteTodo =
+  (id, onSuccess = () => null) =>
+  dispatch => {
+    dispatch(startUpdate());
+    deleteTodoAPI(id)
+      .then(() => {
+        dispatch({ type: DELETE_TODO, id });
         onSuccess();
       })
       .finally(() => dispatch(endUpdate()));

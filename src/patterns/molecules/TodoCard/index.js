@@ -1,11 +1,14 @@
+import { Pressable, Text } from 'react-native';
+
 import { Box } from 'native-base';
 import React from 'react';
 import Styles from './TodoCard.styles';
-import { Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'native-base';
 
-const TodoCard = ({ item, index }) => {
+const TodoCard = ({ item }) => {
   const { colors } = useTheme();
+  const navigation = useNavigation();
   const styles = Styles(colors);
   return (
     <Box
@@ -14,7 +17,13 @@ const TodoCard = ({ item, index }) => {
       rounded="lg"
       overflow="hidden"
       shadow={1}>
-      <Text>{item.title}</Text>
+      <Pressable
+        style={styles.pressable}
+        onPress={() => navigation.navigate('Details', { item })}>
+        <Text numberOfLines={4} style={styles.title}>
+          {item.title}
+        </Text>
+      </Pressable>
     </Box>
   );
 };

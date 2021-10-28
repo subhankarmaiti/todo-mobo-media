@@ -9,6 +9,13 @@ export default colors =>
       flex: 1,
       backgroundColor: 'white',
     },
+    title: {
+      fontSize: 16,
+      lineHeight: 20,
+    },
+    pressable: {
+      flex: 1,
+    },
     labelBar: color => ({
       height: 10,
       backgroundColor: color,

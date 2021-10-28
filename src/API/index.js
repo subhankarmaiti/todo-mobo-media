@@ -5,3 +5,6 @@ export const getTodos = () => axios.get(baseURL).then(({ data }) => data);
 
 export const createTodo = todo =>
   axios.post(baseURL, todo).then(({ data }) => data);
+
+export const deleteTodo = id =>
+  axios.delete(`${baseURL}/${id}`).then(({ data }) => data);

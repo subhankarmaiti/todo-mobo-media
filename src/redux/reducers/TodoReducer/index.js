@@ -43,6 +43,13 @@ export default function todoReducer(state = initialState, action) {
         page: 1,
       });
     }
+    case TODO_ACTION_TYPES.DELETE_TODO: {
+      const list = state.list;
+      delete list[`id${action.id}`];
+      return Object.assign({}, state, {
+        list,
+      });
+    }
     default:
       return state;
   }
