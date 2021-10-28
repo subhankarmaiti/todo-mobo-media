@@ -18,7 +18,7 @@ const Home = () => {
   const styles = Styles(colors);
 
   useEffect(() => {
-    dispatch(getTodos());
+    loadTodos();
   }, []);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const Home = () => {
 
     return () => backHandler.remove();
   }, [page]);
-
+  const loadTodos = () => dispatch(getTodos());
   const onNext = () => dispatch(nextPage());
   const onBack = () => dispatch(previousPage());
   return (
@@ -53,6 +53,8 @@ const Home = () => {
         data={getTodoBasedOnPage(todos, page)}
         keyExtractor={item => item.id}
         renderItem={props => <TodoCard {...props} />}
+        onRefresh={page === 1 ? loadTodos : null}
+        refreshing={loading}
         numColumns={2}
       />
       {loading && <Loader />}
