@@ -12,6 +12,7 @@ module.exports = {
           store: './src/redux',
           api: './src/API',
           patterns: './src/patterns',
+          utils: './src/utils',
         },
         extensions: [
           '.json',

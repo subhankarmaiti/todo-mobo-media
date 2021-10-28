@@ -10,7 +10,8 @@
           "screens": "./src/screens",
           "store": "./src/redux",
           "api": "./src/API",
-          "patterns": "./src/patterns"
+          "patterns": "./src/patterns",
+          "utils": "./src/utils"
         },
         "extensions": [
           ".json",
