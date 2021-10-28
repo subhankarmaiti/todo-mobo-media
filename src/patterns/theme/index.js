@@ -22,6 +22,19 @@ const theme = extendTheme({
         },
       },
     },
+    Checkbox: {
+      baseStyle: {
+        _pressed: {
+          _interactionBox: {
+            bg: 'indigo.200',
+          },
+        },
+        _checked: {
+          borderColor: 'indigo.800',
+          bg: 'indigo.800',
+        },
+      },
+    },
   },
 });
 

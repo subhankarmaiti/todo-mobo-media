@@ -7,11 +7,13 @@ import {
   START_LOADER,
   START_UPDATE_LOADER,
   UPDATE_PAGE,
+  UPDATE_TODO,
 } from './TodoAction.types';
 import {
   createTodo as createTodoAPI,
   deleteTodo as deleteTodoAPI,
   getTodos as getTodosAPI,
+  updateTodo as updateTodoAPI,
 } from 'api';
 
 const startLoader = () => ({ type: START_LOADER });
@@ -77,6 +79,23 @@ export const deleteTodo =
     deleteTodoAPI(id)
       .then(() => {
         dispatch({ type: DELETE_TODO, id });
+        onSuccess();
+      })
+      .finally(() => dispatch(endUpdate()));
+  };
+
+export const updateTodo =
+  (todo, onSuccess = () => null) =>
+  dispatch => {
+    if (todo?.id > 200) {
+      dispatch({ type: UPDATE_TODO, todo });
+      onSuccess();
+      return;
+    }
+    dispatch(startUpdate());
+    updateTodoAPI(todo)
+      .then(updateTodo => {
+        dispatch({ type: UPDATE_TODO, todo: updateTodo });
         onSuccess();
       })
       .finally(() => dispatch(endUpdate()));

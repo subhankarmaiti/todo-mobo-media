@@ -1,6 +1,6 @@
-import { Pressable, Text } from 'react-native';
+import { Box, Text } from 'native-base';
 
-import { Box } from 'native-base';
+import { Pressable } from 'react-native';
 import React from 'react';
 import Styles from './TodoCard.styles';
 import { useNavigation } from '@react-navigation/native';
@@ -20,7 +20,10 @@ const TodoCard = ({ item }) => {
       <Pressable
         style={styles.pressable}
         onPress={() => navigation.navigate('Details', { item })}>
-        <Text numberOfLines={4} style={styles.title}>
+        <Text
+          textDecorationLine={item?.completed ? 'line-through' : null}
+          numberOfLines={4}
+          style={styles.title}>
           {item.title}
         </Text>
       </Pressable>

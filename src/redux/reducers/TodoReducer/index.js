@@ -50,6 +50,14 @@ export default function todoReducer(state = initialState, action) {
         list,
       });
     }
+    case TODO_ACTION_TYPES.UPDATE_TODO: {
+      return Object.assign({}, state, {
+        list: {
+          ...state.list,
+          [`id${action.todo.id}`]: action.todo,
+        },
+      });
+    }
     default:
       return state;
   }

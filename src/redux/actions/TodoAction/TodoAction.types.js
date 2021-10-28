@@ -6,6 +6,7 @@ export const START_UPDATE_LOADER = 'START_UPDATE_LOADER';
 export const END_UPDATE_LOADER = 'END_UPDATE_LOADER';
 export const ADD_TODO = 'ADD_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
+export const UPDATE_TODO = 'UPDATE_TODO';
 
 export default {
   START_LOADER,
@@ -16,4 +17,5 @@ export default {
   END_UPDATE_LOADER,
   ADD_TODO,
   DELETE_TODO,
+  UPDATE_TODO,
 };

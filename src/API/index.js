@@ -8,3 +8,6 @@ export const createTodo = todo =>
 
 export const deleteTodo = id =>
   axios.delete(`${baseURL}/${id}`).then(({ data }) => data);
+
+export const updateTodo = todo =>
+  axios.put(`${baseURL}/${todo?.id}`, todo).then(({ data }) => data);

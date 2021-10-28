@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import AddIcon from 'patterns/atoms/AddIcon';
 import Header from 'patterns/atoms/Header';
 import Loader from 'patterns/atoms/Loader';
-import NoteModal from 'patterns/organisms/NoteModal';
 import Styles from './Home.styles';
 import TodoCard from 'patterns/molecules/TodoCard';
+import TodoModal from 'patterns/organisms/TodoModal';
 import { useTheme } from 'native-base';
 
 const Home = () => {
@@ -65,7 +65,7 @@ const Home = () => {
       />
       {(loading || updating) && <Loader />}
       <AddIcon onPress={openAddModal} />
-      {displayAddModal && <NoteModal onDismiss={dismissAddModal} />}
+      {displayAddModal && <TodoModal onDismiss={dismissAddModal} />}
     </SafeAreaView>
   );
 };
