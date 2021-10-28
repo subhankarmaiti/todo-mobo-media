@@ -9,6 +9,7 @@ module.exports = {
         alias: {
           navigators: './src/navigators',
           screens: './src/screens',
+          store: './src/redux',
         },
         extensions: [
           '.json',

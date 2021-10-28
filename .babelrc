@@ -7,7 +7,8 @@
         "root": ["./"],
         "alias": {
           "navigators": "./src/navigators",
-          "screens": "./src/screens"
+          "screens": "./src/screens",
+          "store": "./src/redux"
         },
         "extensions": [
           ".json",
