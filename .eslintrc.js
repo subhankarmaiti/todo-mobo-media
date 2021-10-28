@@ -11,6 +11,7 @@ module.exports = {
           screens: './src/screens',
           store: './src/redux',
           api: './src/API',
+          patterns: './src/patterns',
         },
         extensions: [
           '.json',
