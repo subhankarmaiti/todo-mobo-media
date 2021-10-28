@@ -1,19 +1,22 @@
 import { BackHandler, FlatList, SafeAreaView } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getTodoBasedOnPage, isMoreDataPresent } from 'utils/todoHelper';
 import { getTodos, nextPage, previousPage } from 'store/actions/TodoAction';
 import { useDispatch, useSelector } from 'react-redux';
 
+import AddIcon from 'patterns/atoms/AddIcon';
 import Header from 'patterns/atoms/Header';
 import Loader from 'patterns/atoms/Loader';
+import NoteModal from 'patterns/organisms/NoteModal';
 import Styles from './Home.styles';
 import TodoCard from 'patterns/molecules/TodoCard';
 import { useTheme } from 'native-base';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { loading, list, page } = useSelector(state => state.todo);
+  const { loading, list, page, updating } = useSelector(state => state.todo);
   const todos = Object.values(list);
+  const [displayAddModal, setDisplayAddModal] = useState(false);
   const { colors } = useTheme();
   const styles = Styles(colors);
 
@@ -34,9 +37,12 @@ const Home = () => {
       'hardwareBackPress',
       backAction,
     );
-
     return () => backHandler.remove();
   }, [page]);
+
+  const dismissAddModal = () => setDisplayAddModal(false);
+  const openAddModal = () => setDisplayAddModal(true);
+
   const loadTodos = () => dispatch(getTodos());
   const onNext = () => dispatch(nextPage());
   const onBack = () => dispatch(previousPage());
@@ -57,7 +63,9 @@ const Home = () => {
         refreshing={loading}
         numColumns={2}
       />
-      {loading && <Loader />}
+      {(loading || updating) && <Loader />}
+      <AddIcon onPress={openAddModal} />
+      {displayAddModal && <NoteModal onDismiss={dismissAddModal} />}
     </SafeAreaView>
   );
 };

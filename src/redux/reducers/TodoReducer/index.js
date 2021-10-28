@@ -24,6 +24,25 @@ export default function todoReducer(state = initialState, action) {
         page: Math.max(1, action.page),
       });
     }
+    case TODO_ACTION_TYPES.START_UPDATE_LOADER: {
+      return Object.assign({}, state, {
+        updating: true,
+      });
+    }
+    case TODO_ACTION_TYPES.END_UPDATE_LOADER: {
+      return Object.assign({}, state, {
+        updating: false,
+      });
+    }
+    case TODO_ACTION_TYPES.ADD_TODO: {
+      return Object.assign({}, state, {
+        list: {
+          [`id${action.todo.id}`]: action.todo,
+          ...state.list,
+        },
+        page: 1,
+      });
+    }
     default:
       return state;
   }

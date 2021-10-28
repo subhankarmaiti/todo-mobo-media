@@ -1,15 +1,29 @@
 import { Button, FormControl, Input, Modal } from 'native-base';
 import React, { useEffect, useState } from 'react';
 
+import { createTodo } from 'store/actions/TodoAction';
 import { func } from 'prop-types';
+import { useDispatch } from 'react-redux';
 
 const NoteModal = ({ onDismiss, todo }) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
+
   useEffect(() => {
     if (todo?.title) {
       setTitle(todo.title);
     }
   }, [todo]);
+
+  const onSave = () => {
+    const todo = {
+      userId: Math.floor(Math.random() * 10) + 1, // generate number from 1 to 10
+      completed: false,
+      title,
+    };
+    dispatch(createTodo(todo, onDismiss));
+  };
+
   return (
     <Modal isOpen={true} onClose={onDismiss}>
       <Modal.Content maxWidth="400px">
@@ -24,7 +38,7 @@ const NoteModal = ({ onDismiss, todo }) => {
             <Button variant="ghost" colorScheme="blueGray" onPress={onDismiss}>
               Cancel
             </Button>
-            <Button onPress={() => {}}>Save</Button>
+            <Button onPress={onSave}>{todo?.id ? 'Update' : 'Save'}</Button>
           </Button.Group>
         </Modal.Footer>
       </Modal.Content>
