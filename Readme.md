@@ -9,7 +9,6 @@
 * Add/Edit Modal Form
 * Delete confirmation
 
-<br>
 #### Development Module Used
 
 * Redux
@@ -27,3 +26,5 @@
 4. **redux:** redux containes code related to redux store, action reducers
 5. **screens:** screens are different screen available in application
 6. **utils:** utils contains all utility function related to project
+
+##### **Android apk availabel to download** [Here](https://github.com/subhankarmaiti/todo-mobo-media/blob/master/app-release.apk)
