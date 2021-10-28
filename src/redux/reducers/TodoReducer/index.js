@@ -16,6 +16,12 @@ export default function todoReducer(state = initialState, action) {
     case TODO_ACTION_TYPES.LOAD_TODOS: {
       return Object.assign({}, state, {
         list: action.todos,
+        page: 1,
+      });
+    }
+    case TODO_ACTION_TYPES.UPDATE_PAGE: {
+      return Object.assign({}, state, {
+        page: Math.max(1, action.page),
       });
     }
     default:
