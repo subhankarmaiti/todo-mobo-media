@@ -1,63 +1,33 @@
-import 'react-native-gesture-handler';
+import { FlatList, SafeAreaView } from 'react-native';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  Center,
-  Code,
-  HStack,
-  Heading,
-  Link,
-  NativeBaseProvider,
-  Switch,
-  Text,
-  VStack,
-  useColorMode,
-} from 'native-base';
+import Loader from 'patterns/atoms/Loader';
+import Styles from './Home.styles';
+import TodoCard from 'patterns/molecules/TodoCard';
+import { getTodos } from 'store/actions/TodoAction';
+import { useTheme } from 'native-base';
 
-import NativeBaseIcon from '../../components/NativeBaseIcon';
-import React from 'react';
-
-// Color Switch Component
-function ToggleDarkMode() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  return (
-    <HStack space={2} alignItems="center">
-      <Text>Dark</Text>
-      <Switch
-        isChecked={colorMode === 'light' ? true : false}
-        onToggle={toggleColorMode}
-        aria-label={
-          colorMode === 'light' ? 'switch to dark mode' : 'switch to light mode'
-        }
-      />
-      <Text>Light</Text>
-    </HStack>
-  );
-}
 const Home = () => {
+  const dispatch = useDispatch();
+  const { loading, list } = useSelector(state => state.todo);
+  console.log(list, 'loading');
+  const { colors } = useTheme();
+  const styles = Styles(colors);
+  console.log(colors);
+  useEffect(() => {
+    dispatch(getTodos());
+  }, []);
   return (
-    <NativeBaseProvider>
-      <Center
-        _dark={{ bg: 'blueGray.900' }}
-        _light={{ bg: 'blueGray.50' }}
-        px={4}
-        flex={1}>
-        <VStack space={5} alignItems="center">
-          <NativeBaseIcon />
-          <Heading size="lg">Welcome to NativeBase</Heading>
-          <HStack space={2} alignItems="center">
-            <Text>Edit</Text>
-            <Code>App.js</Code>
-            <Text>and save to reload.</Text>
-          </HStack>
-          <Link href="https://docs.nativebase.io" isExternal>
-            <Text color="primary.500" underline fontSize={'xl'}>
-              Learn NativeBase
-            </Text>
-          </Link>
-          <ToggleDarkMode />
-        </VStack>
-      </Center>
-    </NativeBaseProvider>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={Object.values(list)}
+        keyExtractor={item => item.id}
+        renderItem={props => <TodoCard {...props} />}
+        numColumns={2}
+      />
+      {loading && <Loader />}
+    </SafeAreaView>
   );
 };
 export default Home;
